@@ -2,6 +2,7 @@
   --bg: #f9f9f9;
   --text: #333;
   --card: #ffffff;
+  --nav: #2e7d32;
   --header: #388e3c;
 }
 
@@ -12,10 +13,11 @@ body {
   color: var(--text);
 }
 
-.dark {
+body.dark {
   --bg: #121212;
   --text: #f1f1f1;
   --card: #1e1e1e;
+  --nav: #1b5e20;
   --header: #1b5e20;
 }
 
@@ -29,11 +31,11 @@ header {
 #welcomeMsg {
   text-align: center;
   font-weight: bold;
-  margin-top: 10px;
+  margin: 10px;
 }
 
 nav {
-  background: #2e7d32;
+  background: var(--nav);
   text-align: center;
   padding: 10px;
 }
@@ -41,11 +43,9 @@ nav {
 nav a, nav button {
   color: white;
   margin: 5px;
-  text-decoration: none;
-  padding: 6px 10px;
-  cursor: pointer;
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 section {
@@ -70,10 +70,10 @@ section {
 }
 
 .rating button {
-  background: #388e3c;
+  background: var(--header);
   color: white;
   border: none;
-  padding: 5px;
+  padding: 6px;
   cursor: pointer;
 }
 
