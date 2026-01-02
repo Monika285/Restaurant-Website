@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,10 +29,9 @@
 <!-- ================= MENU ================= -->
 <section id="menu">
   <h2>Our Menu</h2>
-
   <div class="menu">
 
-   
+    <!-- Repeatable menu item -->
     <div class="menu-item">
       <h3>Margherita Pizza</h3>
       <p>Fresh mozzarella, basil, tomato sauce.</p>
@@ -43,7 +43,6 @@
       </div>
     </div>
 
-  
     <div class="menu-item">
       <h3>Pasta Alfredo</h3>
       <p>Creamy Alfredo sauce with fettuccine pasta.</p>
@@ -55,7 +54,6 @@
       </div>
     </div>
 
-    
     <div class="menu-item">
       <h3>Paneer Tikka</h3>
       <p>Spicy marinated paneer grilled to perfection.</p>
@@ -67,34 +65,9 @@
       </div>
     </div>
 
-  
-    <div class="menu-item">
-      <h3>Veg Burger</h3>
-      <p>Crispy veggie patty with fresh lettuce and sauce.</p>
-      <strong>₹220</strong>
-      <div class="rating">
-        <textarea placeholder="Write a review..."></textarea>
-        <button class="reviewBtn">Submit Review</button>
-        <p class="reviews"></p>
-      </div>
-    </div>
-
- 
-    <div class="menu-item">
-      <h3>French Fries</h3>
-      <p>Golden crispy fries with seasoning.</p>
-      <strong>₹180</strong>
-      <div class="rating">
-        <textarea placeholder="Write a review..."></textarea>
-        <button class="reviewBtn">Submit Review</button>
-        <p class="reviews"></p>
-      </div>
-    </div>
-
-    
     <div class="menu-item">
       <h3>Veg Biryani</h3>
-      <p>Aromatic basmati rice with spices and vegetables.</p>
+      <p>Aromatic basmati rice with spices.</p>
       <strong>₹420</strong>
       <div class="rating">
         <textarea placeholder="Write a review..."></textarea>
@@ -103,57 +76,10 @@
       </div>
     </div>
 
-   
-    <div class="menu-item">
-      <h3>Butter Naan</h3>
-      <p>Soft naan brushed with butter.</p>
-      <strong>₹60</strong>
-      <div class="rating">
-        <textarea placeholder="Write a review..."></textarea>
-        <button class="reviewBtn">Submit Review</button>
-        <p class="reviews"></p>
-      </div>
-    </div>
-
-   
-    <div class="menu-item">
-      <h3>Dal Makhani</h3>
-      <p>Slow cooked black lentils with cream.</p>
-      <strong>₹320</strong>
-      <div class="rating">
-        <textarea placeholder="Write a review..."></textarea>
-        <button class="reviewBtn">Submit Review</button>
-        <p class="reviews"></p>
-      </div>
-    </div>
-
-    
-    <div class="menu-item">
-      <h3>Cold Coffee</h3>
-      <p>Chilled coffee topped with cream.</p>
-      <strong>₹190</strong>
-      <div class="rating">
-        <textarea placeholder="Write a review..."></textarea>
-        <button class="reviewBtn">Submit Review</button>
-        <p class="reviews"></p>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <h3>Chocolate Lava Cake</h3>
-      <p>Warm chocolate cake with molten center.</p>
-      <strong>₹250</strong>
-      <div class="rating">
-        <textarea placeholder="Write a review..."></textarea>
-        <button class="reviewBtn">Submit Review</button>
-        <p class="reviews"></p>
-      </div>
-    </div>
-
   </div>
 </section>
 
-
+<!-- ================= EVENTS ================= -->
 <section id="events">
   <h2>Upcoming Events</h2>
   <div class="event">
@@ -162,13 +88,51 @@
   </div>
 </section>
 
+<!-- ================= LOGIN MODAL ================= -->
+<div id="login" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('login')">&times;</span>
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="loginUsername" placeholder="Username" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- ================= SIGNUP MODAL ================= -->
+<div id="signup" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('signup')">&times;</span>
+    <h2>Signup</h2>
+    <form id="signupForm">
+      <input type="text" id="signupUsername" placeholder="Username" required>
+      <input type="password" id="signupPassword" placeholder="Password" required>
+      <button type="submit">Signup</button>
+    </form>
+  </div>
+</div>
+
+<!-- ================= RESERVATION MODAL ================= -->
+<div id="reservation" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('reservation')">&times;</span>
+    <h2>Table Reservation</h2>
+    <form id="reservationForm">
+      <input type="text" id="resName" placeholder="Your Name" required>
+      <input type="number" id="resPeople" placeholder="Number of People" required>
+      <input type="date" id="resDate" required>
+      <input type="time" id="resTime" required>
+      <button type="submit">Reserve</button>
+    </form>
+  </div>
+</div>
 
 <footer>
   © 2025 GreenLeaf Restaurant | All Rights Reserved
 </footer>
 
 <script src="script.js"></script>
-
 </body>
 </html>
-
