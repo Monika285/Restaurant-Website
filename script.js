@@ -1,10 +1,11 @@
-// Get elements
+// ELEMENTS
 const loginLink = document.getElementById("loginLink");
 const signupLink = document.getElementById("signupLink");
 const reservationLink = document.getElementById("reservationLink");
 const logoutBtn = document.getElementById("logoutBtn");
 const darkToggle = document.getElementById("darkToggle");
 
+// MODALS
 function openModal(id) {
   document.getElementById(id).style.display = "flex";
 }
@@ -12,7 +13,6 @@ function closeModal(id) {
   document.getElementById(id).style.display = "none";
 }
 
-// Navbar actions
 loginLink.onclick = () => openModal("login");
 signupLink.onclick = () => openModal("signup");
 reservationLink.onclick = () => openModal("reservation");
@@ -20,14 +20,19 @@ reservationLink.onclick = () => openModal("reservation");
 // 🌙 DARK MODE
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
+  darkToggle.innerText = "☀️";
 }
 
 darkToggle.onclick = () => {
   document.body.classList.toggle("dark");
-  localStorage.setItem(
-    "theme",
-    document.body.classList.contains("dark") ? "dark" : "light"
-  );
+
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+    darkToggle.innerText = "☀️";
+  } else {
+    localStorage.setItem("theme", "light");
+    darkToggle.innerText = "🌙";
+  }
 };
 
 // SIGNUP
@@ -74,15 +79,15 @@ reservationForm.onsubmit = e => {
 
 // REVIEWS
 document.querySelectorAll(".reviewBtn").forEach((btn, i) => {
-  const reviewText = btn.nextElementSibling;
-  const saved = localStorage.getItem("review" + i);
-  if (saved) reviewText.innerText = saved;
+  const display = btn.nextElementSibling;
+  const saved = localStorage.getItem("review_" + i);
+  if (saved) display.innerText = saved;
 
   btn.onclick = () => {
     const text = btn.previousElementSibling.value;
     if (!text) return;
-    localStorage.setItem("review" + i, text);
-    reviewText.innerText = text;
+    localStorage.setItem("review_" + i, text);
+    display.innerText = text;
     btn.previousElementSibling.value = "";
   };
 });
