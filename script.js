@@ -1,27 +1,36 @@
+// Get elements
+const loginLink = document.getElementById("loginLink");
+const signupLink = document.getElementById("signupLink");
+const reservationLink = document.getElementById("reservationLink");
+const logoutBtn = document.getElementById("logoutBtn");
+const darkToggle = document.getElementById("darkToggle");
+
 function openModal(id) {
   document.getElementById(id).style.display = "flex";
 }
-
 function closeModal(id) {
   document.getElementById(id).style.display = "none";
 }
 
+// Navbar actions
 loginLink.onclick = () => openModal("login");
 signupLink.onclick = () => openModal("signup");
 reservationLink.onclick = () => openModal("reservation");
 
-/* DARK MODE */
-const toggle = document.getElementById("darkToggle");
+// 🌙 DARK MODE
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
 }
-toggle.onclick = () => {
+
+darkToggle.onclick = () => {
   document.body.classList.toggle("dark");
-  localStorage.setItem("theme",
-    document.body.classList.contains("dark") ? "dark" : "light");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
 };
 
-/* SIGNUP */
+// SIGNUP
 signupForm.onsubmit = e => {
   e.preventDefault();
   localStorage.setItem("username", signupUsername.value);
@@ -30,7 +39,7 @@ signupForm.onsubmit = e => {
   closeModal("signup");
 };
 
-/* LOGIN */
+// LOGIN
 loginForm.onsubmit = e => {
   e.preventDefault();
   if (
@@ -45,40 +54,40 @@ loginForm.onsubmit = e => {
   }
 };
 
-/* LOGOUT */
+// LOGOUT
 logoutBtn.onclick = () => {
   localStorage.removeItem("username");
   welcomeMsg.innerText = "";
   logoutBtn.style.display = "none";
 };
 
-/* RESERVATION */
+// RESERVATION
 reservationForm.onsubmit = e => {
   e.preventDefault();
   if (!localStorage.getItem("username")) {
     alert("Please login first!");
     return;
   }
-  alert("Reservation Confirmed!");
+  alert("Reservation confirmed!");
   closeModal("reservation");
 };
 
-/* REVIEWS */
+// REVIEWS
 document.querySelectorAll(".reviewBtn").forEach((btn, i) => {
-  const p = btn.nextElementSibling;
+  const reviewText = btn.nextElementSibling;
   const saved = localStorage.getItem("review" + i);
-  if (saved) p.innerText = saved;
+  if (saved) reviewText.innerText = saved;
 
   btn.onclick = () => {
     const text = btn.previousElementSibling.value;
     if (!text) return;
     localStorage.setItem("review" + i, text);
-    p.innerText = text;
+    reviewText.innerText = text;
     btn.previousElementSibling.value = "";
   };
 });
 
-/* AUTO LOGIN */
+// AUTO LOGIN
 if (localStorage.getItem("username")) {
   welcomeMsg.innerText = `Welcome, ${localStorage.getItem("username")} 👋`;
   logoutBtn.style.display = "inline";
