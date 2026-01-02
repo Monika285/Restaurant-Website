@@ -1,9 +1,21 @@
+/* LIGHT MODE */
 :root {
   --bg: #f9f9f9;
-  --text: #333;
+  --text: #222;
   --card: #ffffff;
   --nav: #2e7d32;
   --header: #388e3c;
+  --reviewBtn: #ff9800;
+}
+
+/* DARK MODE */
+body.dark {
+  --bg: #0f172a;
+  --text: #e5e7eb;
+  --card: #1e293b;
+  --nav: #020617;
+  --header: #020617;
+  --reviewBtn: #38bdf8;
 }
 
 body {
@@ -11,14 +23,7 @@ body {
   font-family: Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-}
-
-body.dark {
-  --bg: #121212;
-  --text: #f1f1f1;
-  --card: #1e1e1e;
-  --nav: #1b5e20;
-  --header: #1b5e20;
+  transition: background 0.3s, color 0.3s;
 }
 
 header {
@@ -42,10 +47,11 @@ nav {
 
 nav a, nav button {
   color: white;
-  margin: 5px;
   background: none;
   border: none;
+  margin: 5px;
   cursor: pointer;
+  font-size: 14px;
 }
 
 section {
@@ -62,26 +68,36 @@ section {
   background: var(--card);
   padding: 15px;
   border-radius: 10px;
+  transition: background 0.3s;
 }
 
+/* REVIEW BUTTON */
 .rating textarea {
   width: 100%;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
-.rating button {
-  background: var(--header);
-  color: white;
+.reviewBtn {
+  background: var(--reviewBtn);
+  color: black;
   border: none;
-  padding: 6px;
+  padding: 8px;
+  margin-top: 6px;
   cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
 }
 
+.reviewBtn:hover {
+  opacity: 0.85;
+}
+
+/* MODAL */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.7);
   justify-content: center;
   align-items: center;
 }
