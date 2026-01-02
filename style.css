@@ -1,129 +1,92 @@
+:root {
+  --bg: #f9f9f9;
+  --text: #333;
+  --card: #ffffff;
+  --header: #388e3c;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f9f9f9;
-  color: #333;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.dark {
+  --bg: #121212;
+  --text: #f1f1f1;
+  --card: #1e1e1e;
+  --header: #1b5e20;
 }
 
 header {
-  background: #388e3c;
+  background: var(--header);
   color: white;
-  padding: 15px 20px;
+  padding: 20px;
   text-align: center;
+}
+
+#welcomeMsg {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 nav {
   background: #2e7d32;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  text-align: center;
   padding: 10px;
 }
 
-nav a {
+nav a, nav button {
   color: white;
+  margin: 5px;
   text-decoration: none;
-  margin: 8px 15px;
-  font-weight: bold;
-}
-
-nav a:hover {
-  text-decoration: underline;
+  padding: 6px 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
 }
 
 section {
-  padding: 40px 20px;
-  max-width: 1000px;
-  margin: auto;
+  padding: 30px;
 }
 
-h2 {
-  color: #2e7d32;
-  margin-bottom: 20px;
-}
-
-/* Menu section */
 .menu {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
 
-.menu-item {
-  background: white;
+.menu-item, .event, .modal-content {
+  background: var(--card);
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
 }
 
-.menu-item h3 {
-  margin: 0 0 10px;
-  color: #388e3c;
+.rating textarea {
+  width: 100%;
+  margin-top: 8px;
 }
 
-.event {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-}
-
-footer {
-  background: #2e7d32;
+.rating button {
+  background: #388e3c;
   color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 30px;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
 }
 
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 20px;
-  }
-  nav {
-    flex-direction: column;
-  }
-}
-
-/* Modal (Login, Signup, Reservation) */
 .modal {
-  display: none; /* hidden initially */
+  display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
+  inset: 0;
+  background: rgba(0,0,0,0.6);
   justify-content: center;
   align-items: center;
-  z-index: 1000;
 }
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
-  text-align: center;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-}
-.modal-content input, .modal-content button {
-  display: block;
-  width: 90%;
-  margin: 10px auto;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-.modal-content button {
-  background: #333;
-  color: white;
-  cursor: pointer;
-}
-.modal-content button:hover {
-  background: #ff9800;
-}
+
 .close-btn {
   float: right;
-  font-size: 20px;
   cursor: pointer;
-  color: #333;
-
 }
