@@ -1,71 +1,85 @@
-// Open modal
 function openModal(id) {
   document.getElementById(id).style.display = "flex";
 }
 
-// Close modal
 function closeModal(id) {
   document.getElementById(id).style.display = "none";
 }
 
-// Attach navbar clicks
-document.getElementById("loginLink").addEventListener("click", (e) => {
-  e.preventDefault();
-  openModal("login");
-});
+loginLink.onclick = () => openModal("login");
+signupLink.onclick = () => openModal("signup");
+reservationLink.onclick = () => openModal("reservation");
 
-document.getElementById("signupLink").addEventListener("click", (e) => {
-  e.preventDefault();
-  openModal("signup");
-});
+/* DARK MODE */
+const toggle = document.getElementById("darkToggle");
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+}
+toggle.onclick = () => {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme",
+    document.body.classList.contains("dark") ? "dark" : "light");
+};
 
-document.getElementById("reservationLink").addEventListener("click", (e) => {
+/* SIGNUP */
+signupForm.onsubmit = e => {
   e.preventDefault();
-  openModal("reservation");
-});
-
-// Signup
-document.getElementById("signupForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const username = document.getElementById("signupUsername").value;
-  const password = document.getElementById("signupPassword").value;
-  localStorage.setItem("username", username);
-  localStorage.setItem("password", password);
-  alert("Signup successful! Please login.");
+  localStorage.setItem("username", signupUsername.value);
+  localStorage.setItem("password", signupPassword.value);
+  alert("Signup successful!");
   closeModal("signup");
-});
+};
 
-// Login
-document.getElementById("loginForm").addEventListener("submit", function (e) {
+/* LOGIN */
+loginForm.onsubmit = e => {
   e.preventDefault();
-  const username = document.getElementById("loginUsername").value;
-  const password = document.getElementById("loginPassword").value;
   if (
-    username === localStorage.getItem("username") &&
-    password === localStorage.getItem("password")
+    loginUsername.value === localStorage.getItem("username") &&
+    loginPassword.value === localStorage.getItem("password")
   ) {
-    alert("Login successful!");
+    welcomeMsg.innerText = `Welcome, ${loginUsername.value} 👋`;
+    logoutBtn.style.display = "inline";
     closeModal("login");
   } else {
-    alert("Invalid username or password!");
+    alert("Invalid credentials");
   }
-});
+};
 
-// Reservation
-document.getElementById("reservationForm").addEventListener("submit", function (e) {
+/* LOGOUT */
+logoutBtn.onclick = () => {
+  localStorage.removeItem("username");
+  welcomeMsg.innerText = "";
+  logoutBtn.style.display = "none";
+};
+
+/* RESERVATION */
+reservationForm.onsubmit = e => {
   e.preventDefault();
-  const name = document.getElementById("resName").value;
-  const people = document.getElementById("resPeople").value;
-  const date = document.getElementById("resDate").value;
-  const time = document.getElementById("resTime").value;
-
   if (!localStorage.getItem("username")) {
-    alert("You must login first to make a reservation.");
+    alert("Please login first!");
     return;
   }
-
-  alert(
-    `Reservation confirmed!\nName: ${name}\nPeople: ${people}\nDate: ${date}\nTime: ${time}`
-  );
+  alert("Reservation Confirmed!");
   closeModal("reservation");
+};
+
+/* REVIEWS */
+document.querySelectorAll(".reviewBtn").forEach((btn, i) => {
+  const p = btn.nextElementSibling;
+  const saved = localStorage.getItem("review" + i);
+  if (saved) p.innerText = saved;
+
+  btn.onclick = () => {
+    const text = btn.previousElementSibling.value;
+    if (!text) return;
+    localStorage.setItem("review" + i, text);
+    p.innerText = text;
+    btn.previousElementSibling.value = "";
+  };
 });
+
+/* AUTO LOGIN */
+if (localStorage.getItem("username")) {
+  welcomeMsg.innerText = `Welcome, ${localStorage.getItem("username")} 👋`;
+  logoutBtn.style.display = "inline";
+}
